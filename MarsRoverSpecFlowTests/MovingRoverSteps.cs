@@ -1,6 +1,6 @@
 ﻿using System;
 using TechTalk.SpecFlow;
-using MarsRover.Services;
+using MarsRoverBusinessLogic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MarsRoverSpecFlowTests

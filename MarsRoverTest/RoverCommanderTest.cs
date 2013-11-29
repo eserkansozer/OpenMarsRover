@@ -3,8 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MarsRover.DomainObjects;
-using MarsRover.Services;
+using MarsRoverDAL.DAObjects;
+using MarsRoverBusinessLogic.Services;
 
 namespace MarsRoverTest
 {

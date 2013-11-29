@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using System.Collections;
 using System.Collections.Generic;
-using MarsRover.Services;
+using MarsRoverBusinessLogic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MarsRoverSpecFlowTests

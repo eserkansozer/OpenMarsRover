@@ -3,10 +3,10 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MarsRover.ORM;
+using MarsRoverDAL.ORM;
 using Rhino.Mocks;
 using System.Data.Entity;
-using MarsRover.DomainObjects;
+using MarsRoverDAL.DAObjects;
 using System.Collections.ObjectModel;
 
 namespace MarsRoverTest

@@ -5,8 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using MarsRover.ORM;
-using MarsRover.Services;
+using MarsRoverBusinessLogic.Services;
+using MarsRoverDAL.ORM;
 
 namespace MarsRoverWCF
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MarsRover.Services;
-using MarsRover.DomainObjects;
-using MarsRover.ORM;
+using MarsRoverBusinessLogic.Services;
+using MarsRoverDAL.DAObjects;
+using MarsRoverDAL.ORM;
 using System.Data.Entity;
 
 namespace MarsRoverTest

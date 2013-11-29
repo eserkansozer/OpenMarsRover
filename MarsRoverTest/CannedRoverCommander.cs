@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MarsRover.DomainObjects;
-using MarsRover.Services;
+using MarsRoverBusinessLogic.Services;
+using MarsRoverDAL.DAObjects;
 
 namespace MarsRoverTest
 {

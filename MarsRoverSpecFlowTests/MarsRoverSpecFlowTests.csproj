@@ -11,9 +11,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MarsRoverSpecFlowTests</RootNamespace>
     <AssemblyName>MarsRoverSpecFlowTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,11 +33,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="SpecRun.SpecFlowPlugin">
@@ -94,17 +99,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MarsRoverTest\MarsRoverTest.csproj">
-      <Project>{8C9FFF8E-8313-4793-B120-38193A03B185}</Project>
-      <Name>MarsRoverTest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MarsRover\MarsRover.csproj">
-      <Project>{B363C8B8-43EA-422C-8EF7-E0F6B56BB100}</Project>
-      <Name>MarsRover</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <ProjectReference Include="..\MarsRoverBusinessLogic\MarsRoverBusinessLogic.csproj">
+      <Project>{5a36e494-9b8a-4bf6-af47-273358761453}</Project>
+      <Name>MarsRoverBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarsRoverDAL\MarsRoverDAL.csproj">
+      <Project>{e9fade1d-879a-423d-8114-dd23c43a4128}</Project>
+      <Name>MarsRoverDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarsRoverTest\MarsRoverTest.csproj">
+      <Project>{8c9fff8e-8313-4793-b120-38193a03b185}</Project>
+      <Name>MarsRoverTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

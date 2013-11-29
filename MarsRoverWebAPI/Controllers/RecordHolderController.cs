@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using MarsRover.Services;
-using MarsRover.ORM;
+using System.Web.Http.Cors;
+using MarsRoverBusinessLogic.Services;
+using MarsRoverDAL.ORM;
+
 
 namespace MarsRoverWebAPI.Controllers
 {
+    [EnableCors(origins: "http://localhost:57327", headers: "*", methods: "*")]
     public class RecordHolderController : ApiController
     {
         // GET api/recordholder
@@ -16,6 +19,7 @@ namespace MarsRoverWebAPI.Controllers
         {
             var manager = new RoverManager(new InputParser(), new RoverCommander(), new MarsRoverDbAccessor(new MarsRoverDbContext()));
             var ret = manager.QueryForTheLongestDistanceRover();
+            
             return new RecordHolder() { Holder = ret };
         }
 

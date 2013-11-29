@@ -4,8 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using MarsRover.Services;
-using MarsRover.ORM;
+using MarsRoverBusinessLogic.Services;
+using MarsRoverDAL.ORM;
+
 
 namespace MarsRoverWebAPI.Controllers
 {

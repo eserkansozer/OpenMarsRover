@@ -18,7 +18,7 @@ namespace MarsRoverSeleniumTests
             IWebDriver driver = new FirefoxDriver();
 
             //go to page
-            driver.Navigate().GoToUrl("localhost:49387");
+            driver.Navigate().GoToUrl("localhost:57327");
 
             // Find the text input element by its name
             IWebElement query = driver.FindElement(By.Name("Input"));
@@ -41,7 +41,7 @@ namespace MarsRoverSeleniumTests
             IWebDriver driver = new FirefoxDriver();
 
             //go to page
-            driver.Navigate().GoToUrl("localhost:49387");
+            driver.Navigate().GoToUrl("localhost:57327");
 
             // Find the text input element by its name
             IWebElement query = driver.FindElement(By.Name("Input"));
@@ -68,7 +68,7 @@ namespace MarsRoverSeleniumTests
             IWebDriver driver = new FirefoxDriver();
 
             //go to page
-            driver.Navigate().GoToUrl("localhost:49387");
+            driver.Navigate().GoToUrl("localhost:57327");
 
             // Find the text input element by its name
             IWebElement query = driver.FindElement(By.Name("Input"));
