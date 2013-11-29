@@ -1,0 +1,61 @@
+﻿@model MarsRoverUI.Models.ViewModel
+@{
+    ViewBag.Title = "Open Mars Rover";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                               
+             @using(Html.BeginForm("Process", "Home", FormMethod.Post))
+             {
+                 @Html.TextAreaFor(model => model.Input)
+                 <br />
+                 <input type="submit" value="Submit" /><br />
+                 <a onclick="AjaxSubmit();" href="#" id="sbmt">AjaxSubmit</a>
+             }
+     
+             @Html.TextAreaFor(model => model.Output)
+     
+             <br />Last Track(<a onclick="AjaxRefreshLT();" href="#" id="A1">AjaxRefresh</a>):@Html.TextAreaFor(model => model.Track)
+     
+             <br />Record Holder(<a onclick="AjaxRefreshRH();" href="#" id="A2">AjaxRefresh</a>):@Html.TextAreaFor(model => model.Longest)
+
+            </p>
+        </div>
+    </section>
+}
+
+<script>
+    function AjaxSubmit() {
+        var inputText = $('#Input').val();                
+        $.ajax({
+            type: "Post",
+            url: "/Home/AjaxProcess",
+            data: {inp : inputText},
+            complete: function (data, textStatus) { $('#Output').text(data.responseText); }
+        });
+    }
+
+    function AjaxRefreshLT() {
+        $.ajax({
+            type: "Get",
+            url: "/lasttrack/get",
+            complete: function (data, textStatus) {
+                $('#Track').text(data.responseText);
+            }
+        });
+    }
+
+    function AjaxRefreshRH() {
+        $.getJSON("http://localhost:52998/api/recordholder",
+                    function (data) {
+                        $('#Longest').text(data.Holder);
+                    })
+                }
+
+</script>
