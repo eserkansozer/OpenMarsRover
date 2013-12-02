@@ -754,3 +754,22 @@ tr.pager td {
             margin: 0;
         }
 }
+
+.inputOutput {
+    width: 40%;
+}
+
+.infoBox {
+        width: 45%;         
+}
+
+textarea {
+    resize: none;
+    width: 90%;
+    min-height: 100px;
+}
+
+#inputBoxes div, #infoBoxes div  {
+    display: inline-block;
+}
+

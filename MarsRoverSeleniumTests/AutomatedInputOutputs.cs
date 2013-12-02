@@ -6,40 +6,53 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace MarsRoverSeleniumTests
 {
     [TestClass]
     public class AutomatedInputOutputs
     {
-        [TestMethod]
-        public void ShoulOutput12NWhen11NandActionM()
+
+        IWebDriver driver;
+
+        [TestInitialize]
+        public void Initialize()
         {
-            IWebDriver driver = new FirefoxDriver();
-
-            //go to page
-            driver.Navigate().GoToUrl("localhost:57327");
-
-            // Find the text input element by its name
-            IWebElement query = driver.FindElement(By.Name("Input"));
-
-            // Enter something to search for
-            query.SendKeys("5 5\n1 1 N\nM");
-
-            // Now submit the form. WebDriver will find the form for us from the element
-            query.Submit();
-
-            Assert.AreEqual("1 2 N", driver.FindElement(By.Id("Output")).Text);
-
-            //Close the browser
-            driver.Quit();
+            driver = new FirefoxDriver();
         }
 
-        [TestMethod]
-        public void ShouldOutput12NWhen11NandActionM_AJAX()
+        [TestCleanup]
+        public void Cleanup()
         {
-            IWebDriver driver = new FirefoxDriver();
+            driver.Quit(); 
+        }
 
+
+       //// [TestMethod]
+       //// public void ShoulOutput12NWhen11NandActionM()
+       //// {
+       ////     //go to page
+       ////     driver.Navigate().GoToUrl("localhost:57327");
+
+       ////     // Find the text input element by its name
+       ////     IWebElement query = driver.FindElement(By.Name("Input"));
+
+       ////     // Enter something to search for
+       ////     query.SendKeys("5 5\n1 1 N\nM");
+
+       ////     // Now submit the form. WebDriver will find the form for us from the element
+       ////     var button = driver.FindElement(By.Id("sbmt"));
+       ////     button.Click();
+       ////     Thread.Sleep(1000);
+
+       ////     Assert.AreEqual("1 2 N", driver.FindElement(By.Id("Output")).Text);
+
+       ////}
+
+        [TestMethod]
+        public void ShouldOutput12NWhen11NandActionM()
+        {
             //go to page
             driver.Navigate().GoToUrl("localhost:57327");
 
@@ -58,15 +71,11 @@ namespace MarsRoverSeleniumTests
 
             Assert.AreEqual("1 2 N", driver.FindElement(By.Name("Output")).Text);
 
-            //Close the browser
-            driver.Quit();
         }
 
         [TestMethod]
         public void ShoulOutputErrorWhenWrongInput()
         {
-            IWebDriver driver = new FirefoxDriver();
-
             //go to page
             driver.Navigate().GoToUrl("localhost:57327");
 
@@ -77,12 +86,11 @@ namespace MarsRoverSeleniumTests
             query.SendKeys("xxx\n1 1 N\nM");
 
             // Now submit the form. WebDriver will find the form for us from the element
-            query.Submit();
+            IWebElement ajaxlink = driver.FindElement(By.Id("sbmt"));
+            ajaxlink.Click();
 
             Assert.AreEqual("Parsing Error... Please check your input!", driver.FindElement(By.Name("Output")).Text);
-
-            //Close the browser
-            driver.Quit();
+            
         }        
     }
 }

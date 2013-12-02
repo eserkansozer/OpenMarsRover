@@ -1,31 +1,44 @@
 ﻿@model MarsRoverUI.Models.ViewModel
 @{
-    ViewBag.Title = "Open Mars Rover";
+    ViewBag.Title = "A Mind Game";
+    ViewBag.Message = "Please submit your track(s)";
 }
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
+               
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-            <p>
-                               
-             @using(Html.BeginForm("Process", "Home", FormMethod.Post))
-             {
-                 @Html.TextAreaFor(model => model.Input)
-                 <br />
-                 <input type="submit" value="Submit" /><br />
-                 <a onclick="AjaxSubmit();" href="#" id="sbmt">AjaxSubmit</a>
-             }
-     
-             @Html.TextAreaFor(model => model.Output)
-     
-             <br />Last Track(<a onclick="AjaxRefreshLT();" href="#" id="A1">AjaxRefresh</a>):@Html.TextAreaFor(model => model.Track)
-     
-             <br />Record Holder(<a onclick="AjaxRefreshRH();" href="#" id="A2">AjaxRefresh</a>):@Html.TextAreaFor(model => model.Longest)
+            <div id="inputBoxes">
+                <div class="inputOutput">
+                    <label for="Input">Track(s):</label>
+                    <textarea id="Input" name="Input" autofocus>@Model.Input</textarea>
+                </div>
 
-            </p>
+                <div style="width:10%; min-height:100px;">
+                    <button onclick="AjaxSubmit();AjaxRefreshLT();AjaxRefreshRH();" id="sbmt">Submit</button>
+                </div>
+
+                <div class="inputOutput">
+                    <label for="Input">Final Location(s):</label>
+                    <textarea id="Output" name="Output" disabled>@Model.Output</textarea>
+                </div>
+
+            </div>
+            <div id="infoBoxes">
+                <div class="infoBox">
+                    <label for="Track">Last Track</label>
+                    <textarea id="Track" name="Track" disabled></textarea>
+                    <a onclick="AjaxRefreshLT();" href="#" id="A1">(Update)</a>
+                </div>
+
+                <div class="infoBox">
+                    <label for="Longest">Record Holder</label>
+                    <textarea id="Longest" name="Longest" disabled></textarea>
+                    <a onclick="AjaxRefreshRH();" href="#" id="A2">(Update)</a>
+                </div>
+            </div>
         </div>
     </section>
 }

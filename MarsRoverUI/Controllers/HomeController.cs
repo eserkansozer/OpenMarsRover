@@ -45,5 +45,10 @@ namespace MarsRoverBusinessLogic.Controllers
         {
             return View();
         }
+
+        public ActionResult Rules()
+        {
+            return View();
+        }
     }
 }
