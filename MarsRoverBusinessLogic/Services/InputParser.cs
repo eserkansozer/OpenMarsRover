@@ -8,6 +8,8 @@ namespace MarsRoverBusinessLogic.Services
 {
     public class InputParser : IInputParser
     {
+        public const string MatrixErrorMessage = "Matrix Limit Exceeded! Max 100 X 100";
+
         public InputParser()
         {}
 
@@ -58,7 +60,12 @@ namespace MarsRoverBusinessLogic.Services
 
         private Coordinates ParseUpperRightPoint(string line)
         {
-            return new Coordinates(Int32.Parse(line.Substring(0, 1)), Int32.Parse(line.Substring(2, 1)));
+            var points = line.Split(new char[] { ' ' });
+            var x = Int32.Parse(points[0]);
+            var y = Int32.Parse(points[1]);
+            if(x>100 || y>100)
+                throw new ApplicationException(MatrixErrorMessage);
+            return new Coordinates(x, y);
         }
 
         #endregion

@@ -28,28 +28,6 @@ namespace MarsRoverSeleniumTests
             driver.Quit(); 
         }
 
-
-       //// [TestMethod]
-       //// public void ShoulOutput12NWhen11NandActionM()
-       //// {
-       ////     //go to page
-       ////     driver.Navigate().GoToUrl("localhost:57327");
-
-       ////     // Find the text input element by its name
-       ////     IWebElement query = driver.FindElement(By.Name("Input"));
-
-       ////     // Enter something to search for
-       ////     query.SendKeys("5 5\n1 1 N\nM");
-
-       ////     // Now submit the form. WebDriver will find the form for us from the element
-       ////     var button = driver.FindElement(By.Id("sbmt"));
-       ////     button.Click();
-       ////     Thread.Sleep(1000);
-
-       ////     Assert.AreEqual("1 2 N", driver.FindElement(By.Id("Output")).Text);
-
-       ////}
-
         [TestMethod]
         public void ShouldOutput12NWhen11NandActionM()
         {

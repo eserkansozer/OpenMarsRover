@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAObjects\Coordinates.cs" />
+    <Compile Include="DAObjects\IEquatable.cs" />
     <Compile Include="DAObjects\InputEntity.cs" />
     <Compile Include="DAObjects\Position.cs" />
     <Compile Include="DAObjects\Rover.cs" />

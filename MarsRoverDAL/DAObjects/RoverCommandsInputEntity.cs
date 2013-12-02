@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MarsRoverDAL.DAObjects
 {
-    public class RoverCommandsInputEntity
+    public class RoverCommandsInputEntity : IEquatable<RoverCommandsInputEntity>
     {
         public Position initialPosition;
         public List<RoverCommand> actionCommands;
@@ -14,6 +14,11 @@ namespace MarsRoverDAL.DAObjects
         {
             initialPosition = new Position(new Coordinates(0, 0), Direction.N);
             actionCommands = new List<RoverCommand>();
+        }
+
+        public bool Equals(RoverCommandsInputEntity other)
+        {
+            return this.actionCommands.SequenceEqual(other.actionCommands) && this.initialPosition.Equals(other.initialPosition);
         }
     }
 }

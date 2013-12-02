@@ -28,13 +28,13 @@ namespace MarsRoverSpecFlowTests
                 inputList.Add(input);
             }
 
-            ScenarioContext.Current["inputList"] = inputList;           
+            ScenarioContext.Current["input"] = inputList;           
         }
 
         [When]
         public void WhenIPressTheSubmitButton()
         {
-            var inputList = (List<String>)ScenarioContext.Current["inputList"];
+            var inputList = (List<String>)ScenarioContext.Current["input"];
             var resultList = new List<string>();
             foreach (var input in inputList)
             {

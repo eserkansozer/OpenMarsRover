@@ -34,6 +34,10 @@ namespace MarsRoverBusinessLogic.Services
             {
                 inputCommands = _inputParser.ParseInput(inputData);
             }
+            catch (ApplicationException ex)
+            {
+                return ex.Message;
+            }
             catch (Exception)
             {
                 return ParsingErrorMsg;

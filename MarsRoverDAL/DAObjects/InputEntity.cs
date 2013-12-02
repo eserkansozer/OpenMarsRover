@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MarsRoverDAL.DAObjects
 {
-    public class InputEntity
+    public class InputEntity : IEquatable<InputEntity>
     {
         private Coordinates _plateauUpperRight;
         public List<RoverCommandsInputEntity> _roverTrails;
@@ -26,6 +26,22 @@ namespace MarsRoverDAL.DAObjects
         {
             _plateauUpperRight = plateauUpperRight;
             _roverTrails = roverTrails;
+        }
+
+        public bool Equals(InputEntity other)
+        {
+            //for (int i = 0; i <= this._roverTrails.Count; i++)
+            //{
+            //    if (!this._roverTrails[i].Equals(other._roverTrails[i]))
+            //        return false;
+            //}
+
+            //if (!this._plateauUpperRight.Equals(other._plateauUpperRight))
+            //    return false;
+
+            //return true;
+
+            return this._roverTrails.SequenceEqual(other._roverTrails) && this._plateauUpperRight.Equals(other._plateauUpperRight);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace MarsRoverTest
         public InputEntity ParseInput(string inputData)
         {
             if (_shouldThrowException)
-                throw new ApplicationException();
+                throw new ApplicationException(RoverManager.ParsingErrorMsg);
             return _inputEntity; ;
         }
 
