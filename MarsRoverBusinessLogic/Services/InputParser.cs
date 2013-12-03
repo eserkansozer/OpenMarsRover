@@ -26,10 +26,10 @@ namespace MarsRoverBusinessLogic.Services
                 var roverInitialCoords = ParseInitialCoordinates(lines[lineOrder]);
                 var roverInitialOrientation = ParseInitialOrientation(lines[lineOrder]);
                 var roverCommands = new RoverCommandsInputEntity();
-                roverCommands.initialPosition = new Position(roverInitialCoords, roverInitialOrientation.ToString());
+                roverCommands.InitialPosition = new Position(roverInitialCoords, roverInitialOrientation.ToString());
                 lineOrder++;
-                roverCommands.actionCommands = ParseCommands(lines[lineOrder]);
-                inputEntity._roverTrails.Add(roverCommands);
+                roverCommands.ActionCommands = ParseCommands(lines[lineOrder]);
+                inputEntity.RoverTrails.Add(roverCommands);
                 lineOrder++;
             }
 

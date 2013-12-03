@@ -7,10 +7,11 @@ namespace MarsRoverBusinessLogic.Services
 {
     public interface IRoverManager
     {
-        string GenerateOutputTrailInfo(string inputCommands);
 
         string QueryForTheLastTravelledTrack();
 
         string QueryForTheLongestDistanceRover();
+
+        Dictionary<string, string> GenerateGameResultInfo(string inputCommands);
     }
 }

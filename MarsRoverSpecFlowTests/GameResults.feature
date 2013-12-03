@@ -6,7 +6,7 @@
 @mytag
 Scenario: Number of rovers
 	Given I have entered 3 rovers as input
-	When I press the submit button
+	When I press submit button
 	Then the result should display that I entered 3 rovers
 
 Scenario: Cumulative step count for one rover
@@ -25,7 +25,7 @@ Scenario: Cumulative step count for one rover
 	| 1  |
 
 Scenario: Cumulative step count for 2 rovers
-	Given I have entered the following inputs
+	Given I have entered the following multiple rover inputs
 	| Matrix | InitialPosition1 | Command1 | InitialPosition2 | Command2 |
 	| 5 5    | 1 1 N            | MM       | 0 0 N            | M        |
 	| 5 5    | 1 1 E            | MMRR     | 3 3 E            | RRM      |

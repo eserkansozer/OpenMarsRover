@@ -34,12 +34,12 @@ namespace MarsRoverSpecFlowTests
         [When]
         public void WhenIPressTheSubmitButton()
         {
-            var inputList = (List<String>)ScenarioContext.Current["input"];
-            var resultList = new List<string>();
+            var inputList = (List<string>)ScenarioContext.Current["input"];
+            var resultList = new List<Dictionary<string,string>>();
             foreach (var input in inputList)
             {
-                var result = _roverManager.GenerateOutputTrailInfo(input);
-                resultList.Add(result);
+                var resultDictionary = _roverManager.GenerateGameResultInfo(input);
+                resultList.Add(resultDictionary);
             }
 
             ScenarioContext.Current["resultList"] = resultList;   
@@ -49,11 +49,11 @@ namespace MarsRoverSpecFlowTests
         [Then(@"the result should be as following on the output box")]
         public void ThenTheResultShouldBeAsFollowingOnTheOutputBox(Table table)
         {
-            var resultList = (IList<string>) ScenarioContext.Current["resultList"];
+            var resultList = (IList<Dictionary<string,string>>) ScenarioContext.Current["resultList"];
 
             for(int i=0; i < resultList.Count; i++)
             {
-                Assert.AreEqual(table.Rows[i][0], resultList[i]);    
+                Assert.AreEqual(table.Rows[i][0], resultList[i][RoverManager.OUTPUT_TRAIL_KEY]);    
             }            
         }
 

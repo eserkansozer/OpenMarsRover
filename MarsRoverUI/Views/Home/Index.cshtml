@@ -49,8 +49,11 @@
         $.ajax({
             type: "Post",
             url: "/Home/AjaxProcess",
-            data: {inp : inputText},
-            complete: function (data, textStatus) { $('#Output').text(data.responseText); }
+            dataType: "json",
+            data: {inp : inputText}
+        }).done(function (data) {
+            debugger;
+            $('#Output').text(data.FinalLocation +"\n" + data.RoverCount + "\n" + data.StepCount);
         });
     }
 

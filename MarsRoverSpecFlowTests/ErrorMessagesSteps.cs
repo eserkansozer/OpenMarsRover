@@ -29,29 +29,29 @@ namespace MarsRoverSpecFlowTests
         [Then]
         public void ThenITheResultShouldBeMatrixLimitExceededError()
         {
-            var result = ScenarioContext.Current["output"].ToString();
+            var result = ((Dictionary<string,string>)ScenarioContext.Current["output"])[RoverManager.OUTPUT_TRAIL_KEY].ToString();
             Assert.AreEqual(InputParser.MatrixErrorMessage, result);
         }
 
         [Then]
         public void ThenTheResultShouldBeTheInputParserError()
         {
-            var resultList = (IList<string>)ScenarioContext.Current["resultList"];
+            var resultList = (IList<Dictionary<string,string>>)ScenarioContext.Current["resultList"];
 
             for (int i = 0; i < resultList.Count; i++)
             {
-                Assert.AreEqual(RoverManager.ParsingErrorMsg, resultList[i]);
+                Assert.AreEqual(RoverManager.ParsingErrorMsg, resultList[i][RoverManager.OUTPUT_TRAIL_KEY]);
             }  
         }
 
         [Then]
         public void ThenTheResultShouldBeOutOfTerrainError()
         {
-            var resultList = (IList<string>)ScenarioContext.Current["resultList"];
+            var resultList = (IList<Dictionary<string,string>>)ScenarioContext.Current["resultList"];
 
             for (int i = 0; i < resultList.Count; i++)
             {
-                Assert.AreEqual(RoverManager.OutOfRangeErrorMsg, resultList[i]);
+                Assert.AreEqual(RoverManager.OutOfRangeErrorMsg, resultList[i][RoverManager.OUTPUT_TRAIL_KEY]);
             }  
         }
 
@@ -71,7 +71,7 @@ namespace MarsRoverSpecFlowTests
         [Then]
         public void ThenTheResultShouldBeRoverLimitExceededError()
         {
-            var result = ScenarioContext.Current["output"].ToString();
+            var result = ((Dictionary<string,string>)ScenarioContext.Current["output"])[RoverManager.OUTPUT_TRAIL_KEY].ToString();
             Assert.AreEqual(RoverManager.RoverLimitExceededErrorMsg, result);
         }
 

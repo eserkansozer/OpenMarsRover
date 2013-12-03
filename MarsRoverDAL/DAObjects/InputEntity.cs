@@ -8,7 +8,13 @@ namespace MarsRoverDAL.DAObjects
     public class InputEntity : IEquatable<InputEntity>
     {
         private Coordinates _plateauUpperRight;
-        public List<RoverCommandsInputEntity> _roverTrails;
+        private List<RoverCommandsInputEntity> _roverTrails;
+
+        public List<RoverCommandsInputEntity> RoverTrails
+        {
+            get { return _roverTrails; }
+            set { _roverTrails = value; }
+        }
 
         public Coordinates PlateauUpperRight
         {
@@ -19,29 +25,18 @@ namespace MarsRoverDAL.DAObjects
         public InputEntity()
         {
             _plateauUpperRight = new Coordinates(0, 0);
-            _roverTrails = new List<RoverCommandsInputEntity>();
+            RoverTrails = new List<RoverCommandsInputEntity>();
         }
 
         public InputEntity(Coordinates plateauUpperRight, List<RoverCommandsInputEntity> roverTrails)
         {
             _plateauUpperRight = plateauUpperRight;
-            _roverTrails = roverTrails;
+            RoverTrails = roverTrails;
         }
 
         public bool Equals(InputEntity other)
         {
-            //for (int i = 0; i <= this._roverTrails.Count; i++)
-            //{
-            //    if (!this._roverTrails[i].Equals(other._roverTrails[i]))
-            //        return false;
-            //}
-
-            //if (!this._plateauUpperRight.Equals(other._plateauUpperRight))
-            //    return false;
-
-            //return true;
-
-            return this._roverTrails.SequenceEqual(other._roverTrails) && this._plateauUpperRight.Equals(other._plateauUpperRight);
+            return this.RoverTrails.SequenceEqual(other.RoverTrails) && this._plateauUpperRight.Equals(other._plateauUpperRight);
         }
     }
 }

@@ -82,7 +82,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("I have entered 3 rovers as input", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("I press the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I press submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("the result should display that I entered 3 rovers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -180,7 +180,7 @@ this.ScenarioSetup(scenarioInfo);
                         "5 5 S",
                         "MRM"});
 #line 28
- testRunner.Given("I have entered the following inputs", ((string)(null)), table3, "Given ");
+ testRunner.Given("I have entered the following multiple rover inputs", ((string)(null)), table3, "Given ");
 #line 34
  testRunner.When("I press the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

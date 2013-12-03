@@ -17,6 +17,9 @@ namespace MarsRoverBusinessLogic.Services
         public const string ParsingErrorMsg = "Parsing Error... Please check your input!";
         public const string RoverLimitExceededErrorMsg = "No more than 5 rovers please!";
         public const int MAX_ROVER_COUNT = 5;
+        public const string OUTPUT_TRAIL_KEY = "OutputTrailKey";
+        public const string STEP_COUNT_KEY = "StepCountKey";
+        public const string ROVER_COUNT_KEY = "RoverCountKey";
 
         IInputParser _inputParser;
         IRoverCommander _roverCommander;
@@ -29,8 +32,9 @@ namespace MarsRoverBusinessLogic.Services
             _dbAccessor = dbAccessor;
         }
 
-        public string GenerateOutputTrailInfo(string inputData)
+        public Dictionary<string, string> GenerateGameResultInfo(string inputData)
         {
+            var gameResults = new Dictionary<string, string>();
             InputEntity inputCommands;
             try
             {
@@ -38,23 +42,62 @@ namespace MarsRoverBusinessLogic.Services
             }
             catch (ApplicationException ex)
             {
-                return ex.Message;
+                gameResults.Add(OUTPUT_TRAIL_KEY, ex.Message);
+                return gameResults;
             }
             catch (Exception)
             {
-                return ParsingErrorMsg;
+                gameResults.Add(OUTPUT_TRAIL_KEY, ParsingErrorMsg);
+                return gameResults;
             }
 
             if (!IsRoverCountInRange(inputCommands))
             {
-                return RoverLimitExceededErrorMsg;
+                gameResults.Add(OUTPUT_TRAIL_KEY, RoverLimitExceededErrorMsg);
+                return gameResults;
             }
 
-            var output = new StringBuilder();
-            foreach(var roverCommand in inputCommands._roverTrails)
+            var outputTrailInfo = GenerateOutputTrailInfo(inputCommands);
+            gameResults.Add(OUTPUT_TRAIL_KEY, outputTrailInfo);
+
+            var roverCountInfo = GenerateRoverCountInfo(inputCommands);
+            gameResults.Add(ROVER_COUNT_KEY, roverCountInfo);
+
+            var cumulativeStepCountInfo = GenerateCumulativeStepCountInfo(inputCommands);
+            gameResults.Add(STEP_COUNT_KEY, cumulativeStepCountInfo);
+
+            return gameResults;
+        }
+
+        private string GenerateRoverCountInfo(InputEntity inputCommands)
+        {
+            return inputCommands.RoverTrails.Count().ToString();
+        }
+
+        private string GenerateCumulativeStepCountInfo(InputEntity inputCommands)
+        {
+            //TODO: convert to linq
+            int stepCount =0;
+            foreach (var rt in inputCommands.RoverTrails)
             {
-                var rover = new Rover(roverCommand.initialPosition);                
-                foreach (RoverCommand command in roverCommand.actionCommands)
+                foreach (var ac in rt.ActionCommands)
+                {
+                    if (ac == RoverCommand.M)
+                        stepCount++;
+                }
+            }
+         
+            return stepCount.ToString();                             
+            
+        }
+
+        private string GenerateOutputTrailInfo(InputEntity inputCommands)
+        {
+            var output = new StringBuilder();
+            foreach (var roverCommand in inputCommands.RoverTrails)
+            {
+                var rover = new Rover(roverCommand.InitialPosition);
+                foreach (RoverCommand command in roverCommand.ActionCommands)
                 {
                     _roverCommander.MoveRover(rover, command);
                     if (!IsCoordsInRange(rover.CurrentPosition.Coordinates, inputCommands.PlateauUpperRight))
@@ -71,7 +114,7 @@ namespace MarsRoverBusinessLogic.Services
 
         private static bool IsRoverCountInRange(InputEntity inputCommands)
         {
-            return inputCommands._roverTrails.Count <= MAX_ROVER_COUNT;
+            return inputCommands.RoverTrails.Count <= MAX_ROVER_COUNT;
         }
 
         private bool IsCoordsInRange(Coordinates coords, Coordinates upperRight)

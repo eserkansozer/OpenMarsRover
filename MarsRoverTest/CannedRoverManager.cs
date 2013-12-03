@@ -8,22 +8,12 @@ namespace MarsRoverTest
 {
     public class CannedRoverManager : IRoverManager
     {
-        string _result;
+        Dictionary<string, string> _result = new Dictionary<string, string>();
 
         public CannedRoverManager(string output)
         {
-            _result = output;
+            _result.Add(RoverManager.OUTPUT_TRAIL_KEY, output);
         }
-
-        #region IRoverManager Members
-
-        public string GenerateOutputTrailInfo(string inputCommands)
-        {
-            return _result;
-        }
-
-        #endregion
-
 
         public string QueryForTheLastTravelledTrack()
         {
@@ -33,6 +23,11 @@ namespace MarsRoverTest
         public string QueryForTheLongestDistanceRover()
         {
             return String.Empty;
+        }
+
+        public Dictionary<string, string> GenerateGameResultInfo(string inputCommands)
+        {
+            return _result;
         }
     }
 }

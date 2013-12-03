@@ -15,7 +15,7 @@ namespace MarsRoverTest
         [TestMethod]
         public void GetOutputTrailInfoShouldReturnCorrectOutputForGivenInput()
         {
-            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { initialPosition = new Position(new Coordinates(0, 0), Direction.N), actionCommands = new List<RoverCommand> { RoverCommand.M } } });
+            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { InitialPosition = new Position(new Coordinates(0, 0), Direction.N), ActionCommands = new List<RoverCommand> { RoverCommand.M } } });
             var inputParser = new CannedInputParser(inputEntity);
             var roverCommander = new CannedRoverCommander();
             var accessor = new CannedMarsRoverDbAccessor();
@@ -24,15 +24,15 @@ namespace MarsRoverTest
             var roverManager = new RoverManager(inputParser, roverCommander, accessor);
             var expectedOutput = "0 0 N";
 
-            var output = roverManager.GenerateOutputTrailInfo("");
+            var output = roverManager.GenerateGameResultInfo("");
 
-            Assert.AreEqual(expectedOutput, output);
+            Assert.AreEqual(expectedOutput, output[RoverManager.OUTPUT_TRAIL_KEY]);
         }
 
         [TestMethod]
         public void GetOutputTrailInfoShouldReturnErrorIfRoverGetsOutOfTerrain()
         {
-            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { initialPosition = new Position(new Coordinates(2, 0), Direction.N), actionCommands = new List<RoverCommand> { RoverCommand.M, RoverCommand.M } } });
+            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { InitialPosition = new Position(new Coordinates(2, 0), Direction.N), ActionCommands = new List<RoverCommand> { RoverCommand.M, RoverCommand.M } } });
             var inputParser = new CannedInputParser(inputEntity);
             var roverCommander = new CannedRoverCommander();
             var accessor = new CannedMarsRoverDbAccessor();
@@ -40,16 +40,16 @@ namespace MarsRoverTest
             var roverManager = new RoverManager(inputParser, roverCommander, accessor);
             var expectedOutput = RoverManager.OutOfRangeErrorMsg;
 
-            var output = roverManager.GenerateOutputTrailInfo("");
+            var output = roverManager.GenerateGameResultInfo("");
 
-            Assert.AreEqual(expectedOutput, output);
+            Assert.AreEqual(expectedOutput, output[RoverManager.OUTPUT_TRAIL_KEY]);
 
         }
 
         [TestMethod]
         public void GetOutputTrailInfoShouldReturnErrorIfInputIsNotValid()
         {
-            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { initialPosition = new Position(new Coordinates(0, 0), Direction.N), actionCommands = new List<RoverCommand> { RoverCommand.M } } });
+            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { InitialPosition = new Position(new Coordinates(0, 0), Direction.N), ActionCommands = new List<RoverCommand> { RoverCommand.M } } });
             var inputParser = new CannedInputParser(inputEntity, true);
             var roverCommander = new CannedRoverCommander();
             var accessor = new CannedMarsRoverDbAccessor();
@@ -57,16 +57,16 @@ namespace MarsRoverTest
             var roverManager = new RoverManager(inputParser, roverCommander, accessor);
             var expectedOutput = RoverManager.ParsingErrorMsg;
 
-            var output = roverManager.GenerateOutputTrailInfo("xxx");
+            var output = roverManager.GenerateGameResultInfo("xxx");
 
-            Assert.AreEqual(output, expectedOutput);
+            Assert.AreEqual(expectedOutput, output[RoverManager.OUTPUT_TRAIL_KEY]);
 
         }
 
         [TestMethod]
         public void QueryForTheLastTravelledTrackShouldReturnCorrectOutputForGivenInput()
         {
-            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { initialPosition = new Position(new Coordinates(0, 0), Direction.N), actionCommands = new List<RoverCommand> { RoverCommand.M } } });
+            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { InitialPosition = new Position(new Coordinates(0, 0), Direction.N), ActionCommands = new List<RoverCommand> { RoverCommand.M } } });
             var inputParser = new CannedInputParser(inputEntity);
             var roverCommander = new CannedRoverCommander();
             var accessor = new CannedMarsRoverDbAccessor("1 1 N -> 1 2 N", "1");
@@ -89,7 +89,7 @@ namespace MarsRoverTest
         [TestMethod]
         public void QueryForTheLongestDistanceRoverShouldReturnCorrectOutputForGivenInput()
         {
-            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { initialPosition = new Position(new Coordinates(0, 0), Direction.N), actionCommands = new List<RoverCommand> { RoverCommand.M } } });
+            var inputEntity = new InputEntity(new Coordinates(1, 1), new List<RoverCommandsInputEntity>() { new RoverCommandsInputEntity() { InitialPosition = new Position(new Coordinates(0, 0), Direction.N), ActionCommands = new List<RoverCommand> { RoverCommand.M } } });
             var inputParser = new CannedInputParser(inputEntity);
             var roverCommander = new CannedRoverCommander();
             var accessor = new CannedMarsRoverDbAccessor("", "666");

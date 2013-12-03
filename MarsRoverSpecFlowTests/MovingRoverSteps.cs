@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using MarsRoverBusinessLogic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace MarsRoverSpecFlowTests
 {
@@ -15,9 +16,9 @@ namespace MarsRoverSpecFlowTests
         }
         
         [Given(@"I have entered the initial position as '(.*)'")]
-        public void GivenIHaveEnteredTheInitialPositionAs(string initialPosition)
+        public void GivenIHaveEnteredTheInitialPositionAs(string InitialPosition)
         {
-            ScenarioContext.Current["input"] += initialPosition + "\n";
+            ScenarioContext.Current["input"] += InitialPosition + "\n";
         }
         
         [Given(@"I have entered the command as '(.*)'")]
@@ -31,14 +32,14 @@ namespace MarsRoverSpecFlowTests
         {
             var roverManager = new RoverManager(new InputParser(), new RoverCommander(), new MarsRoverTest.CannedMarsRoverDbAccessor());
             var input = ScenarioContext.Current["input"].ToString();
-            var output = roverManager.GenerateOutputTrailInfo(input);
+            var output = roverManager.GenerateGameResultInfo(input);
             ScenarioContext.Current["output"] = output;
         }
         
         [Then(@"the result should be '(.*)' on the screen")]
         public void ThenTheResultShouldBeOnTheScreen(string expectedResult)
         {
-            var result = ScenarioContext.Current["output"].ToString();
+            var result = ((Dictionary<string,string>)ScenarioContext.Current["output"])[RoverManager.OUTPUT_TRAIL_KEY].ToString();
             Assert.AreEqual(expectedResult, result);
         }
     }

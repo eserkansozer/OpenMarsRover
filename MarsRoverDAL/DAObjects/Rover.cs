@@ -26,9 +26,9 @@ namespace MarsRoverDAL.DAObjects
         public int RoverID
         { get; set; }
 
-        public Rover(Position initialPosition)
+        public Rover(Position InitialPosition)
         {            
-            _currentPosition = initialPosition;
+            _currentPosition = InitialPosition;
             _currentPosition.Step = 0;
             Track = new List<Position>();
             Track.Add((Position)_currentPosition.Clone());

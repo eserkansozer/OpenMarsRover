@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using MarsRoverBusinessLogic.Services;
 using MarsRoverUI.Models;
+using MarsRoverUI.Controllers;
 
 namespace MarsRoverBusinessLogic.Controllers
 {
@@ -27,7 +29,7 @@ namespace MarsRoverBusinessLogic.Controllers
         [HttpPost]
         public ActionResult Process(ViewModel model)
         {           
-            model.Output = _manager.GenerateOutputTrailInfo(model.Input);
+            model.Output = _manager.GenerateGameResultInfo(model.Input)[RoverManager.OUTPUT_TRAIL_KEY];
             model.Track = _manager.QueryForTheLastTravelledTrack();
             model.Longest = _manager.QueryForTheLongestDistanceRover();
 
@@ -37,8 +39,12 @@ namespace MarsRoverBusinessLogic.Controllers
         [HttpPost]
         public ActionResult AjaxProcess(string inp)
         {
-            string output = _manager.GenerateOutputTrailInfo(inp);
-            return Content(output);
+            var output = new {
+                FinalLocation ="FinalLocation(s): " + _manager.GenerateGameResultInfo(inp)[RoverManager.OUTPUT_TRAIL_KEY],
+                RoverCount = "Number or Rovers: " + _manager.GenerateGameResultInfo(inp)[RoverManager.ROVER_COUNT_KEY],
+                StepCount = "Number of Total Steps: " + _manager.GenerateGameResultInfo(inp)[RoverManager.STEP_COUNT_KEY],
+            };
+            return Json(output);
         }
 
         public ActionResult About()
@@ -50,5 +56,10 @@ namespace MarsRoverBusinessLogic.Controllers
         {
             return View();
         }
+    }
+
+    class GameResult
+    {
+        public string FinalLocation{get;set;}
     }
 }
