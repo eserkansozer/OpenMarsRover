@@ -16,9 +16,9 @@ namespace MarsRoverBusinessLogic.Services
         public InputEntity ParseInput(string inputData)
         {
             var inputEntity = new InputEntity();
-            var lines = inputData.Split(new String[] { "\r\n" }, StringSplitOptions.None);
+            var lines = inputData.Trim().Split(new String[] { "\r\n" }, StringSplitOptions.None);
             if(lines.Length == 1)
-                lines = inputData.Split(new String[] { "\n" }, StringSplitOptions.None);
+                lines = inputData.Trim().Split(new String[] { "\n" }, StringSplitOptions.None);
             inputEntity.PlateauUpperRight = ParseUpperRightPoint(lines[0]);
             int lineOrder = 1;
             while (lineOrder < lines.Length)

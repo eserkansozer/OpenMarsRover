@@ -15,6 +15,8 @@ namespace MarsRoverBusinessLogic.Services
     {
         public const string OutOfRangeErrorMsg = "Error... Rover went out of terrain!";
         public const string ParsingErrorMsg = "Parsing Error... Please check your input!";
+        public const string RoverLimitExceededErrorMsg = "No more than 5 rovers please!";
+        public const int MAX_ROVER_COUNT = 5;
 
         IInputParser _inputParser;
         IRoverCommander _roverCommander;
@@ -43,8 +45,12 @@ namespace MarsRoverBusinessLogic.Services
                 return ParsingErrorMsg;
             }
 
-            var output = new StringBuilder();            
-            
+            if (!IsRoverCountInRange(inputCommands))
+            {
+                return RoverLimitExceededErrorMsg;
+            }
+
+            var output = new StringBuilder();
             foreach(var roverCommand in inputCommands._roverTrails)
             {
                 var rover = new Rover(roverCommand.initialPosition);                
@@ -61,6 +67,11 @@ namespace MarsRoverBusinessLogic.Services
                 PersistRover(rover);
             }
             return output.ToString();
+        }
+
+        private static bool IsRoverCountInRange(InputEntity inputCommands)
+        {
+            return inputCommands._roverTrails.Count <= MAX_ROVER_COUNT;
         }
 
         private bool IsCoordsInRange(Coordinates coords, Coordinates upperRight)

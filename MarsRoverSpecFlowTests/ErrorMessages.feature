@@ -34,3 +34,10 @@ Scenario: When you enter an initial maxtix bigger than 100 X 100 you get a speci
 	Given I have entered matrix as 101 102
 	When I press submit button
 	Then I the result should be matrix limit exceeded error
+
+Scenario: When you enter more than 5 rovers you get a specific error message
+	Given I have entered more than 5 rovers
+	When I press submit button
+	Then the result should be rover limit exceeded error
+
+

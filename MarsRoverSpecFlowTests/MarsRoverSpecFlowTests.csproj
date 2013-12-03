@@ -70,6 +70,12 @@
       <DependentUpon>ErrorMessages.feature</DependentUpon>
     </Compile>
     <Compile Include="ErrorMessagesSteps.cs" />
+    <Compile Include="GameResults.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameResults.feature</DependentUpon>
+    </Compile>
+    <Compile Include="GameResultsSteps.cs" />
     <Compile Include="MoveFeature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +99,10 @@
     <None Include="ErrorMessages.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ErrorMessages.feature.cs</LastGenOutput>
+    </None>
+    <None Include="GameResults.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GameResults.feature.cs</LastGenOutput>
     </None>
     <None Include="MoveFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

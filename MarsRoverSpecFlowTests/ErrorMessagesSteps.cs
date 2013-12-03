@@ -54,5 +54,26 @@ namespace MarsRoverSpecFlowTests
                 Assert.AreEqual(RoverManager.OutOfRangeErrorMsg, resultList[i]);
             }  
         }
+
+        [Given]
+        public void GivenIHaveEnteredMoreThan_P0_Rovers(int maxRoverCount)
+        {
+            var roverCount = maxRoverCount + 1;
+            var steps = new MovingRoverSteps();
+            steps.GivenIHaveEnteredTheRoverMATRIXAs_P0("5 5");
+            for (var i = 0; i < roverCount; i++)
+            {
+                steps.GivenIHaveEnteredTheInitialPositionAs("1 1 N");
+                steps.GivenIHaveEnteredTheCommandAs("MM\n");
+            }
+        }
+
+        [Then]
+        public void ThenTheResultShouldBeRoverLimitExceededError()
+        {
+            var result = ScenarioContext.Current["output"].ToString();
+            Assert.AreEqual(RoverManager.RoverLimitExceededErrorMsg, result);
+        }
+
     }
 }
