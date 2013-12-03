@@ -40,4 +40,11 @@ Scenario: When you enter more than 5 rovers you get a specific error message
 	When I press submit button
 	Then the result should be rover limit exceeded error
 
+Scenario: When you intersect with your trail you get a specific error message
+	Given I have entered the rover MATRIX as 5 5
+	And I have entered the initial position as '0 0 E'
+	And I have entered the command as 'MMRRM'
+	When I press submit button
+	Then the result should be trail hit error
+
 

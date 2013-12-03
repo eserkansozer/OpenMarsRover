@@ -8,14 +8,13 @@ using MarsRoverDAL.ORM;
 
 namespace MarsRoverBusinessLogic.Services
 {
-    /// <summary>
-    /// Facade for parsing input, creating rovers, moving them and generating output from their final positions
-    /// </summary>
     public class RoverManager : IRoverManager
     {
         public const string OutOfRangeErrorMsg = "Error... Rover went out of terrain!";
         public const string ParsingErrorMsg = "Parsing Error... Please check your input!";
         public const string RoverLimitExceededErrorMsg = "No more than 5 rovers please!";
+        public const string TrailHitErrorMsg = "You hit your trail somewhere. Be careful!";
+
         public const int MAX_ROVER_COUNT = 5;
         public const string OUTPUT_TRAIL_KEY = "OutputTrailKey";
         public const string STEP_COUNT_KEY = "StepCountKey";
@@ -102,6 +101,8 @@ namespace MarsRoverBusinessLogic.Services
                     _roverCommander.MoveRover(rover, command);
                     if (!IsCoordsInRange(rover.CurrentPosition.Coordinates, inputCommands.PlateauUpperRight))
                         return OutOfRangeErrorMsg;
+                    if (!IsCoordsClearOfTrail(rover))
+                        return TrailHitErrorMsg;
                 }
                 var finalPosition = rover.CurrentPosition.ToString();
                 if (output.Length != 0)
@@ -112,7 +113,20 @@ namespace MarsRoverBusinessLogic.Services
             return output.ToString();
         }
 
-        private static bool IsRoverCountInRange(InputEntity inputCommands)
+
+        private bool IsCoordsClearOfTrail(Rover rover)
+        {
+            var sameLocations = rover.Track.Where(t => t.Overlaps(rover.CurrentPosition) && t.Step != rover.CurrentPosition.Step).ToList();
+            if (sameLocations.Count != 0)
+            {
+                var lastHit = sameLocations.Max(p => p.Step);
+                if (rover.CurrentPosition.Step - lastHit > 2)
+                    return false;
+            }
+            return true;
+        }
+
+        private bool IsRoverCountInRange(InputEntity inputCommands)
         {
             return inputCommands.RoverTrails.Count <= MAX_ROVER_COUNT;
         }
@@ -137,6 +151,6 @@ namespace MarsRoverBusinessLogic.Services
         public string QueryForTheLongestDistanceRover()
         {
             return _dbAccessor.QueryForTheLongestDistanceRover();
-        }
+        }        
     }
 }

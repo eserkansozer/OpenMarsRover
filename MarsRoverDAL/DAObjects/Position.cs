@@ -57,6 +57,11 @@ namespace MarsRoverDAL.DAObjects
 
         #endregion
 
+        public bool Overlaps(Position other)
+        {
+            return this.Coordinates.Equals(other.Coordinates);
+        }
+
         public override string ToString()
         {
             return String.Format("{0} {1} {2}", this.Coordinates.X, this.Coordinates.Y, this.Orientation);
