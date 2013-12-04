@@ -56,8 +56,17 @@ namespace MarsRoverBusinessLogic.Services
                 return gameResults;
             }
 
-            var outputTrailInfo = GenerateOutputTrailInfo(inputCommands);
-            gameResults.Add(OUTPUT_TRAIL_KEY, outputTrailInfo);
+            string outputTrailInfo = "";
+            try
+            {
+                 outputTrailInfo = GenerateOutputTrailInfo(inputCommands);
+            }catch (ApplicationException e)
+            {
+                outputTrailInfo = e.Message;
+                return gameResults;
+            }finally {
+                gameResults.Add(OUTPUT_TRAIL_KEY, outputTrailInfo);
+            }
 
             var roverCountInfo = GenerateRoverCountInfo(inputCommands);
             gameResults.Add(ROVER_COUNT_KEY, roverCountInfo);
@@ -100,14 +109,15 @@ namespace MarsRoverBusinessLogic.Services
                 {
                     _roverCommander.MoveRover(rover, command);
                     if (!IsCoordsInRange(rover.CurrentPosition.Coordinates, inputCommands.PlateauUpperRight))
-                        return OutOfRangeErrorMsg;
+                        throw new ApplicationException(OutOfRangeErrorMsg);
                     if (!IsCoordsClearOfTrail(rover))
-                        return TrailHitErrorMsg;
+                        throw new ApplicationException(TrailHitErrorMsg);
                 }
                 var finalPosition = rover.CurrentPosition.ToString();
                 if (output.Length != 0)
                     output.Append("\n");
                 output.Append(finalPosition);
+                
                 PersistRover(rover);
             }
             return output.ToString();

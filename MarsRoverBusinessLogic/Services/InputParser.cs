@@ -50,12 +50,16 @@ namespace MarsRoverBusinessLogic.Services
 
         private string ParseInitialOrientation(string line)
         {
-            return line.Substring(4, 1);
+            var points = line.Split(new char[] { ' ' });
+            return points[2];
         }
 
         private Coordinates ParseInitialCoordinates(string line)
         {
-            return new Coordinates(Int32.Parse(line.Substring(0, 1)), Int32.Parse(line.Substring(2, 1)));
+            var points = line.Split(new char[] { ' ' });
+            var x = Int32.Parse(points[0]);
+            var y = Int32.Parse(points[1]);
+            return new Coordinates(x, y);
         }
 
         private Coordinates ParseUpperRightPoint(string line)

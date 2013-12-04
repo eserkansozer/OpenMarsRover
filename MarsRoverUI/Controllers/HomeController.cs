@@ -39,10 +39,11 @@ namespace MarsRoverBusinessLogic.Controllers
         [HttpPost]
         public ActionResult AjaxProcess(string inp)
         {
+            var result = _manager.GenerateGameResultInfo(inp);
             var output = new {
-                FinalLocation ="FinalLocation(s): " + _manager.GenerateGameResultInfo(inp)[RoverManager.OUTPUT_TRAIL_KEY],
-                RoverCount = "Number or Rovers: " + _manager.GenerateGameResultInfo(inp)[RoverManager.ROVER_COUNT_KEY],
-                StepCount = "Number of Total Steps: " + _manager.GenerateGameResultInfo(inp)[RoverManager.STEP_COUNT_KEY],
+                FinalLocation = result.ContainsKey(RoverManager.OUTPUT_TRAIL_KEY) ? result[RoverManager.OUTPUT_TRAIL_KEY] : string.Empty,
+                RoverCount = result.ContainsKey(RoverManager.ROVER_COUNT_KEY) ? "Number of Rovers: " + result[RoverManager.ROVER_COUNT_KEY] : string.Empty,
+                StepCount = result.ContainsKey(RoverManager.STEP_COUNT_KEY) ? "Your Score: " + result[RoverManager.STEP_COUNT_KEY] : string.Empty,
             };
             return Json(output);
         }
