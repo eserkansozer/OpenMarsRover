@@ -13,18 +13,14 @@ namespace MarsRoverDAL.DAObjects
         private Position _currentPosition;
 
         public Rover()
-        {
-
-        }
-
-        [NotMapped]
-        public Position CurrentPosition
-        {
-            get { return _currentPosition; }
-        }
-                
+        { }
+           
         public int RoverID
         { get; set; }
+
+        [ForeignKey("Game")]
+        public int GameID { get; set; }
+        public virtual Game Game { get; set; }
 
         public Rover(Position InitialPosition)
         {            
@@ -34,10 +30,22 @@ namespace MarsRoverDAL.DAObjects
             Track.Add((Position)_currentPosition.Clone());
         }
 
+        public int Mileage
+        {
+            get { return Track.Count(); }
+            set { }
+        }
+
         public virtual List<Position> Track
         {
             get;
             set;
+        }
+
+        [NotMapped]
+        public Position CurrentPosition
+        {
+            get { return _currentPosition; }
         }
     }
 }

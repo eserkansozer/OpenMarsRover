@@ -32,7 +32,7 @@ namespace MarsRoverSpecFlowTests
         {
             var roverManager = new RoverManager(new InputParser(), new RoverCommander(), new MarsRoverTest.CannedMarsRoverDbAccessor());
             var input = ScenarioContext.Current["input"].ToString();
-            var output = roverManager.GenerateGameResultInfo(input);
+            var output = roverManager.GenerateGameResultInfo("Anonymous",input);
             ScenarioContext.Current["output"] = output;
         }
         

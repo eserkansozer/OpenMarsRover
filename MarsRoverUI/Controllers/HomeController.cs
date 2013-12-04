@@ -25,13 +25,13 @@ namespace MarsRoverBusinessLogic.Controllers
             ViewData.Model = new ViewModel();
             return View("Index");
         }
-        
+
         [HttpPost]
         public ActionResult Process(ViewModel model)
-        {           
-            model.Output = _manager.GenerateGameResultInfo(model.Input)[RoverManager.OUTPUT_TRAIL_KEY];
-            model.Track = _manager.QueryForTheLastTravelledTrack();
-            model.Longest = _manager.QueryForTheLongestDistanceRover();
+        {
+            //model.Output = _manager.GenerateGameResultInfo(model.Input)[RoverManager.OUTPUT_TRAIL_KEY];
+            //model.Track = _manager.QueryForTheLastTravelledTrack();
+            //model.Longest = _manager.QueryForTheLongestDistanceRover();
 
             return View("Index", model);
         }
@@ -39,7 +39,8 @@ namespace MarsRoverBusinessLogic.Controllers
         [HttpPost]
         public ActionResult AjaxProcess(string inp)
         {
-            var result = _manager.GenerateGameResultInfo(inp);
+            var userName = Request.IsAuthenticated ? User.Identity.Name : "Anonymous";
+            var result = _manager.GenerateGameResultInfo(userName, inp);
             var output = new {
                 FinalLocation = result.ContainsKey(RoverManager.OUTPUT_TRAIL_KEY) ? result[RoverManager.OUTPUT_TRAIL_KEY] : string.Empty,
                 RoverCount = result.ContainsKey(RoverManager.ROVER_COUNT_KEY) ? "Number of Rovers: " + result[RoverManager.ROVER_COUNT_KEY] : string.Empty,

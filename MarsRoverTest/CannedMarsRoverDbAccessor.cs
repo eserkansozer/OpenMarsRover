@@ -32,11 +32,10 @@ namespace MarsRoverTest
         {
             return _longestDistanceRover;
         }
-
-
-        public void PersistRover(Rover rover)
+        
+        public void PersistGame(Game game)
         {
-           // do nothing
+            // do nothing
         }
     }
 }

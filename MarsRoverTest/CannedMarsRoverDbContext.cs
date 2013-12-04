@@ -32,5 +32,12 @@ namespace MarsRoverTest
         {
             return 0;
         }
+
+
+        public IDbSet<Game> Games
+        {
+            get;
+            set;
+        }
     }
 }

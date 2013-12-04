@@ -25,7 +25,7 @@ namespace MarsRoverTest
             return String.Empty;
         }
 
-        public Dictionary<string, string> GenerateGameResultInfo(string inputCommands)
+        public Dictionary<string, string> GenerateGameResultInfo(string userName, string inputCommands)
         {
             return _result;
         }

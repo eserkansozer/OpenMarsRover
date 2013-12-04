@@ -12,6 +12,6 @@ namespace MarsRoverBusinessLogic.Services
 
         string QueryForTheLongestDistanceRover();
 
-        Dictionary<string, string> GenerateGameResultInfo(string inputCommands);
+        Dictionary<string, string> GenerateGameResultInfo(string userName, string inputCommands);
     }
 }

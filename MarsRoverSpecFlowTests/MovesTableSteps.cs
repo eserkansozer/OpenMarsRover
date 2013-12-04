@@ -38,7 +38,7 @@ namespace MarsRoverSpecFlowTests
             var resultList = new List<Dictionary<string,string>>();
             foreach (var input in inputList)
             {
-                var resultDictionary = _roverManager.GenerateGameResultInfo(input);
+                var resultDictionary = _roverManager.GenerateGameResultInfo("Anonymous", input);
                 resultList.Add(resultDictionary);
             }
 

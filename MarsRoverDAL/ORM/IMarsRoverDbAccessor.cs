@@ -10,6 +10,7 @@ namespace MarsRoverDAL.ORM
     {
         string QueryForTheLastTravelledTrack();
         string QueryForTheLongestDistanceRover();
-        void PersistRover(Rover rover);
+        //void PersistRover(Rover rover);
+        void PersistGame(Game game);
     }
 }

@@ -24,7 +24,7 @@ namespace MarsRoverTest
             var roverManager = new RoverManager(inputParser, roverCommander, accessor);
             var expectedOutput = "0 0 N";
 
-            var output = roverManager.GenerateGameResultInfo("");
+            var output = roverManager.GenerateGameResultInfo("","");
 
             Assert.AreEqual(expectedOutput, output[RoverManager.OUTPUT_TRAIL_KEY]);
         }
@@ -40,7 +40,7 @@ namespace MarsRoverTest
             var roverManager = new RoverManager(inputParser, roverCommander, accessor);
             var expectedOutput = RoverManager.OutOfRangeErrorMsg;
 
-            var output = roverManager.GenerateGameResultInfo("");
+            var output = roverManager.GenerateGameResultInfo("","");
 
             Assert.AreEqual(expectedOutput, output[RoverManager.OUTPUT_TRAIL_KEY]);
 
@@ -57,7 +57,7 @@ namespace MarsRoverTest
             var roverManager = new RoverManager(inputParser, roverCommander, accessor);
             var expectedOutput = RoverManager.ParsingErrorMsg;
 
-            var output = roverManager.GenerateGameResultInfo("xxx");
+            var output = roverManager.GenerateGameResultInfo("", "xxx");
 
             Assert.AreEqual(expectedOutput, output[RoverManager.OUTPUT_TRAIL_KEY]);
 

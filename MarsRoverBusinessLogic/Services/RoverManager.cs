@@ -32,8 +32,11 @@ namespace MarsRoverBusinessLogic.Services
             _dbAccessor = dbAccessor;
         }
 
-        public Dictionary<string, string> GenerateGameResultInfo(string inputData)
+        public Dictionary<string, string> GenerateGameResultInfo(string userName, string inputData)
         {
+            var newGame = new Game();
+            newGame.UserName = userName;
+
             var gameResults = new Dictionary<string, string>();
             InputEntity inputCommands;
             try
@@ -57,10 +60,10 @@ namespace MarsRoverBusinessLogic.Services
                 return gameResults;
             }
 
-            string outputTrailInfo = "";
+            string outputTrailInfo = string.Empty;
             try
             {
-                 outputTrailInfo = GenerateOutputTrailInfo(inputCommands);
+                 outputTrailInfo = GenerateOutputTrailInfo(newGame, inputCommands);
             }catch (ApplicationException e)
             {
                 outputTrailInfo = e.Message;
@@ -73,7 +76,10 @@ namespace MarsRoverBusinessLogic.Services
             gameResults.Add(ROVER_COUNT_KEY, roverCountInfo);
 
             var cumulativeStepCountInfo = GenerateCumulativeStepCountInfo(inputCommands);
-            gameResults.Add(STEP_COUNT_KEY, cumulativeStepCountInfo);
+            gameResults.Add(STEP_COUNT_KEY, cumulativeStepCountInfo);                        
+            newGame.Score = Int32.Parse(cumulativeStepCountInfo);
+
+            PersistGame(newGame);
 
             return gameResults;
         }
@@ -100,7 +106,7 @@ namespace MarsRoverBusinessLogic.Services
             
         }
 
-        private string GenerateOutputTrailInfo(InputEntity inputCommands)
+        private string GenerateOutputTrailInfo(Game game, InputEntity inputCommands)
         {
             var roverList = new List<Rover>();
             var output = new StringBuilder();
@@ -122,10 +128,10 @@ namespace MarsRoverBusinessLogic.Services
                     output.Append("\n");
                 output.Append(finalPosition);
 
-                roverList.Add(rover);
-
-                PersistRover(rover);
+                roverList.Add(rover);               
             }
+
+            game.Rovers = roverList;
             return output.ToString();
         }
 
@@ -161,9 +167,9 @@ namespace MarsRoverBusinessLogic.Services
             return true;
         }
 
-        private void PersistRover(Rover rover)
+        private void PersistGame(Game game)
         {
-            _dbAccessor.PersistRover(rover);            
+            _dbAccessor.PersistGame(game);            
         }
 
         public string QueryForTheLastTravelledTrack()

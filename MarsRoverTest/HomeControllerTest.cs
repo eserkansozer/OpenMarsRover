@@ -23,6 +23,7 @@ namespace MarsRoverTest
         }
 
         [TestMethod]
+        [Ignore]
         public void ProcessActionShouldReturnCorrectView()
         {
             var controller = new HomeController(new CannedRoverManager(""));

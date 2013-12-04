@@ -11,9 +11,13 @@ namespace MarsRoverDAL.ORM
     {
         public IDbSet<Rover> Rovers { get; set; }
         public IDbSet<Position> Positions { get; set; }
+        public IDbSet<Game> Games { get; set; }
         public override int SaveChanges()
         {
             return base.SaveChanges();
         }
+
+
+
     }
 }

@@ -19,8 +19,6 @@ namespace MarsRoverDAL.ORM
         public string QueryForTheLastTravelledTrack()
         {
             var max = Convert.ToInt32(_context.Positions.Max(p => p.RoverID));
-            //var l = _context.Positions
-            //    .Where(x => x.RoverID == max);
             var l = from p in _context.Positions
                     where p.RoverID == max
                     select p;
@@ -37,17 +35,6 @@ namespace MarsRoverDAL.ORM
 
         public string QueryForTheLongestDistanceRover()
         {               
-            //var maxStep = _context.Positions
-            //    .Max(p => p.Step);
-            //var longestRovers = from p in _context.Positions
-            //                    where p.Step == maxStep
-            //                    select p.RoverID;
-            //var longest = new StringBuilder();
-            //foreach (var rover in longerList)
-            //{
-            //    longest.Append(rover.ToString() + " ");
-            //}
-            //return longest.ToString().TrimEnd();
             var longerList = (from p in _context.Positions
                               group p by p.RoverID into gr
                               select new { stepsCount = gr.Count(), id = gr.Key })
@@ -56,9 +43,9 @@ namespace MarsRoverDAL.ORM
             return longerList.ToString();
         }
 
-        public void PersistRover(Rover rover)
+        public void PersistGame(Game game)
         {
-            _context.Rovers.Add(rover);
+            _context.Games.Add(game);
             _context.SaveChanges();
         }
     }

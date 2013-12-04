@@ -47,12 +47,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAObjects\Coordinates.cs" />
-    <Compile Include="DAObjects\IEquatable.cs" />
+    <Compile Include="DAObjects\Game.cs" />
     <Compile Include="DAObjects\InputEntity.cs" />
     <Compile Include="DAObjects\Position.cs" />
     <Compile Include="DAObjects\Rover.cs" />
     <Compile Include="DAObjects\RoverCommandsInputEntity.cs" />
     <Compile Include="DAObjects\Types.cs" />
+    <Compile Include="Migrations\201311291608445_InitialCreate.cs" />
+    <Compile Include="Migrations\201311291608445_InitialCreate.Designer.cs">
+      <DependentUpon>201311291608445_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312041435393_mileage.cs" />
+    <Compile Include="Migrations\201312041435393_mileage.Designer.cs">
+      <DependentUpon>201312041435393_mileage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312041505506_game.cs" />
+    <Compile Include="Migrations\201312041505506_game.Designer.cs">
+      <DependentUpon>201312041505506_game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\IMarsRoverDbAccessor.cs" />
     <Compile Include="ORM\IMarsRoverDbContext.cs" />
     <Compile Include="ORM\MarsRoverDbAccessor.cs" />
@@ -62,6 +75,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201311291608445_InitialCreate.resx">
+      <DependentUpon>201311291608445_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312041435393_mileage.resx">
+      <DependentUpon>201312041435393_mileage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312041505506_game.resx">
+      <DependentUpon>201312041505506_game.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

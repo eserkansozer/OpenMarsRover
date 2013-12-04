@@ -7,6 +7,7 @@ namespace MarsRoverDAL.ORM
     {
         IDbSet<Position> Positions { get; set; }
         IDbSet<Rover> Rovers { get; set; }
+        IDbSet<Game> Games { get; set; }
         int SaveChanges();
     }
 }
