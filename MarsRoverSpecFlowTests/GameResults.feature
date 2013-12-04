@@ -29,12 +29,12 @@ Scenario: Cumulative step count for 2 rovers
 	| Matrix | InitialPosition1 | Command1 | InitialPosition2 | Command2 |
 	| 5 5    | 1 1 N            | MM       | 0 0 N            | M        |
 	| 5 5    | 1 1 E            | MMRR     | 3 3 E            | RRM      |
-	| 5 5    | 3 3 S            | MRMMM    | 2 2 W            | MM       |
+	| 5 5    | 3 3 S            | MRMM     | 5 5 W            | MM       |
 	| 5 5    | 1 1 W            | RLRM     | 5 5 S            | MRM      |
 	When I press the submit button
 	Then the cumulative step count result for one rover should be as following on the output box
 	| stepCount |
 	| 3  |
 	| 3  |
-	| 6  |
+	| 5  |
 	| 3  |

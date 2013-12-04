@@ -170,8 +170,8 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "5 5",
                         "3 3 S",
-                        "MRMMM",
-                        "2 2 W",
+                        "MRMM",
+                        "5 5 W",
                         "MM"});
             table3.AddRow(new string[] {
                         "5 5",
@@ -191,7 +191,7 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "3"});
             table4.AddRow(new string[] {
-                        "6"});
+                        "5"});
             table4.AddRow(new string[] {
                         "3"});
 #line 35

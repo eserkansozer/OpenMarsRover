@@ -20,10 +20,10 @@ namespace MarsRoverSpecFlowTests
         public void GivenIHaveEntered_P0_RoversAsInput(int count)
         {
             var steps = new MovingRoverSteps();
-            steps.GivenIHaveEnteredTheRoverMATRIXAs_P0("5 5");
+            steps.GivenIHaveEnteredTheRoverMATRIXAs_P0("10 10");
             for (var i = 0; i < count; i++)
             {
-                steps.GivenIHaveEnteredTheInitialPositionAs("1 1 N");
+                steps.GivenIHaveEnteredTheInitialPositionAs(i.ToString() + " 1 N");
                 steps.GivenIHaveEnteredTheCommandAs("M\n");
             }
         }

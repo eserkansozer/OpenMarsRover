@@ -102,6 +102,7 @@ namespace MarsRoverBusinessLogic.Services
 
         private string GenerateOutputTrailInfo(InputEntity inputCommands)
         {
+            var roverList = new List<Rover>();
             var output = new StringBuilder();
             foreach (var roverCommand in inputCommands.RoverTrails)
             {
@@ -113,17 +114,28 @@ namespace MarsRoverBusinessLogic.Services
                         throw new ApplicationException(OutOfRangeErrorMsg);
                     if (!IsCoordsClearOfTrail(rover))
                         throw new ApplicationException(TrailHitErrorMsg);
+                    if (!IsCoordsClearOfPreviousTrails(rover.CurrentPosition, roverList))
+                        throw new ApplicationException(TrailsIntersectErrorMsg);
                 }
                 var finalPosition = rover.CurrentPosition.ToString();
                 if (output.Length != 0)
                     output.Append("\n");
                 output.Append(finalPosition);
-                
+
+                roverList.Add(rover);
+
                 PersistRover(rover);
             }
             return output.ToString();
         }
 
+        private bool IsCoordsClearOfPreviousTrails(Position roverPosition, List<Rover> previousRovers)
+        {
+             return !previousRovers
+                .Select(pr => pr.Track)
+                .Where(p => p.Exists(position => position.Overlaps(roverPosition)))
+                .Any();
+        }
 
         private bool IsCoordsClearOfTrail(Rover rover)
         {

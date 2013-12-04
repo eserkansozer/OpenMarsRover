@@ -258,9 +258,9 @@ this.ScenarioSetup(scenarioInfo);
                         "RRM"});
             table3.AddRow(new string[] {
                         "5 5",
-                        "1 1 E",
-                        "MRRMMM",
-                        "2 1 W",
+                        "5 5 E",
+                        "RRMMM",
+                        "3 5 W",
                         "MM"});
             table3.AddRow(new string[] {
                         "5 5",
@@ -274,6 +274,57 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I press the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 58
  testRunner.Then("the result should be trails intersect error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("When rovers do not intersect with another you do not get a specific error message" +
+            "")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ErrorMessages")]
+        public virtual void WhenRoversDoNotIntersectWithAnotherYouDoNotGetASpecificErrorMessage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When rovers do not intersect with another you do not get a specific error message" +
+                    "", ((string[])(null)));
+#line 60
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Matrix",
+                        "InitialPosition1",
+                        "Command1",
+                        "InitialPosition2",
+                        "Command2"});
+            table4.AddRow(new string[] {
+                        "5 5",
+                        "1 1 N",
+                        "MM",
+                        "3 1 E",
+                        "M"});
+            table4.AddRow(new string[] {
+                        "5 5",
+                        "1 1 E",
+                        "MMRR",
+                        "4 4 E",
+                        "RRM"});
+            table4.AddRow(new string[] {
+                        "5 5",
+                        "5 5 E",
+                        "RRMMM",
+                        "3 4 W",
+                        "MM"});
+            table4.AddRow(new string[] {
+                        "5 5",
+                        "1 1 W",
+                        "RLRM",
+                        "1 3 N",
+                        "M"});
+#line 61
+ testRunner.Given("I have entered the following multiple rover inputs", ((string)(null)), table4, "Given ");
+#line 67
+ testRunner.When("I press the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 68
+ testRunner.Then("the result should not be trails intersect error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
