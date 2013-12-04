@@ -47,4 +47,12 @@ Scenario: When you intersect with your trail you get a specific error message
 	When I press submit button
 	Then the result should be trail hit error
 
-
+Scenario: When one of rovers intersect with another you get a specific error message
+	Given I have entered the following multiple rover inputs
+	| Matrix | InitialPosition1 | Command1 | InitialPosition2 | Command2 |
+	| 5 5    | 1 1 N            | MM       | 0 1 E            | M        |
+	| 5 5    | 1 1 E            | MMRR     | 1 1 E            | RRM      |
+	| 5 5    | 1 1 E            | MRRMMM   | 2 1 W            | MM       |
+	| 5 5    | 1 1 W            | RLRM     | 1 3 S            | M      |
+	When I press the submit button
+	Then the result should be trails intersect error

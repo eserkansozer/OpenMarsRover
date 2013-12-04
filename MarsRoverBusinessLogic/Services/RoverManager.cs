@@ -14,6 +14,7 @@ namespace MarsRoverBusinessLogic.Services
         public const string ParsingErrorMsg = "Parsing Error... Please check your input!";
         public const string RoverLimitExceededErrorMsg = "No more than 5 rovers please!";
         public const string TrailHitErrorMsg = "You hit your trail somewhere. Be careful!";
+        public const string TrailsIntersectErrorMsg = "Your rovers interfere somewhere. Be careful!";
 
         public const int MAX_ROVER_COUNT = 5;
         public const string OUTPUT_TRAIL_KEY = "OutputTrailKey";

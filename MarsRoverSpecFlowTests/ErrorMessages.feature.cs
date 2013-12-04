@@ -228,6 +228,55 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("When one of rovers intersect with another you get a specific error message")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ErrorMessages")]
+        public virtual void WhenOneOfRoversIntersectWithAnotherYouGetASpecificErrorMessage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When one of rovers intersect with another you get a specific error message", ((string[])(null)));
+#line 50
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Matrix",
+                        "InitialPosition1",
+                        "Command1",
+                        "InitialPosition2",
+                        "Command2"});
+            table3.AddRow(new string[] {
+                        "5 5",
+                        "1 1 N",
+                        "MM",
+                        "0 1 E",
+                        "M"});
+            table3.AddRow(new string[] {
+                        "5 5",
+                        "1 1 E",
+                        "MMRR",
+                        "1 1 E",
+                        "RRM"});
+            table3.AddRow(new string[] {
+                        "5 5",
+                        "1 1 E",
+                        "MRRMMM",
+                        "2 1 W",
+                        "MM"});
+            table3.AddRow(new string[] {
+                        "5 5",
+                        "1 1 W",
+                        "RLRM",
+                        "1 3 S",
+                        "M"});
+#line 51
+ testRunner.Given("I have entered the following multiple rover inputs", ((string)(null)), table3, "Given ");
+#line 57
+ testRunner.When("I press the submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 58
+ testRunner.Then("the result should be trails intersect error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -81,5 +81,17 @@ namespace MarsRoverSpecFlowTests
             var result = ((Dictionary<string, string>)ScenarioContext.Current["output"])[RoverManager.OUTPUT_TRAIL_KEY].ToString();
             Assert.AreEqual(RoverManager.TrailHitErrorMsg, result); 
         }
+
+        [Then]
+        public void ThenTheResultShouldBeTrailsIntersectError()
+        {
+            var resultList = (IList<Dictionary<string, string>>)ScenarioContext.Current["resultList"];
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                Assert.AreEqual(RoverManager.TrailsIntersectErrorMsg, resultList[i][RoverManager.OUTPUT_TRAIL_KEY]);
+            }  
+        }
+
     }
 }

@@ -29,6 +29,7 @@ namespace MarsRoverSeleniumTests
         }
 
         [TestMethod]
+        [Ignore]
         public void ShouldOutput12NWhen11NandActionM()
         {
             //go to page
@@ -52,6 +53,7 @@ namespace MarsRoverSeleniumTests
         }
 
         [TestMethod]
+        [Ignore]
         public void ShoulOutputErrorWhenWrongInput()
         {
             //go to page
