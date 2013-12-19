@@ -15,7 +15,7 @@ namespace MarsRoverWebAPI.Controllers
         // GET api/lasttrack
         public string Get()
         {
-            var manager = new RoverManager(new InputParser(), new RoverCommander(), new MarsRoverDbAccessor(new MarsRoverDbContext()));
+            var manager = new RoverManager(new InputParser(), new RoverCommander(), new EFMarsRoverDbAccessor(new MarsRoverDbContext()));
             var ret = manager.QueryForTheLastTravelledTrack();
             if (ret == null || ret == String.Empty)
             {

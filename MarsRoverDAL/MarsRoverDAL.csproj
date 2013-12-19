@@ -63,9 +63,9 @@
       <DependentUpon>201312041505506_game.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ORM\IMarsRoverDbAccessor.cs" />
+    <Compile Include="IMarsRoverDbAccessor.cs" />
     <Compile Include="ORM\IMarsRoverDbContext.cs" />
-    <Compile Include="ORM\MarsRoverDbAccessor.cs" />
+    <Compile Include="ORM\EFMarsRoverDbAccessor.cs" />
     <Compile Include="ORM\MarsRoverDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

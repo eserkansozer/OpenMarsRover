@@ -17,7 +17,7 @@ namespace MarsRoverWebAPI.Controllers
         // GET api/recordholder
         public RecordHolder Get()
         {
-            var manager = new RoverManager(new InputParser(), new RoverCommander(), new MarsRoverDbAccessor(new MarsRoverDbContext()));
+            var manager = new RoverManager(new InputParser(), new RoverCommander(), new EFMarsRoverDbAccessor(new MarsRoverDbContext()));
             var ret = manager.QueryForTheLongestDistanceRover();
             
             return new RecordHolder() { Holder = ret };

@@ -15,7 +15,7 @@ namespace MarsRoverWCF
     {
         public RecordHolderData GetRecordHolder()
         {
-            var manager = new RoverManager(new InputParser(), new RoverCommander(), new MarsRoverDbAccessor(new MarsRoverDbContext()));
+            var manager = new RoverManager(new InputParser(), new RoverCommander(), new EFMarsRoverDbAccessor(new MarsRoverDbContext()));
             var ret = manager.QueryForTheLongestDistanceRover();
             return new RecordHolderData() { Holder = ret };
         }

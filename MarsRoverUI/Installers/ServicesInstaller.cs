@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Castle.MicroKernel.Registration;
 using MarsRoverBusinessLogic.Services;
+using MarsRoverDAL;
 using MarsRoverDAL.ORM;
 
 namespace MarsRoverUI.Installers
@@ -22,7 +23,7 @@ namespace MarsRoverUI.Installers
             Component.For<IRoverCommander>().ImplementedBy<RoverCommander>(),
             Component.For<IInputParser>().ImplementedBy<InputParser>(),
             Component.For<IMarsRoverDbContext>().ImplementedBy<MarsRoverDbContext>(),
-            Component.For<IMarsRoverDbAccessor>().ImplementedBy<MarsRoverDbAccessor>()
+            Component.For<IMarsRoverDbAccessor>().ImplementedBy<EFMarsRoverDbAccessor>()
             );
         }
     }

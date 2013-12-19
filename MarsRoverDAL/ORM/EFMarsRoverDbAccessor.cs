@@ -7,11 +7,11 @@ using MarsRoverDAL.DAObjects;
 
 namespace MarsRoverDAL.ORM
 {
-    public class MarsRoverDbAccessor : IMarsRoverDbAccessor
+    public class EFMarsRoverDbAccessor : IMarsRoverDbAccessor
     {
         private IMarsRoverDbContext _context;
 
-        public MarsRoverDbAccessor(IMarsRoverDbContext context)
+        public EFMarsRoverDbAccessor(IMarsRoverDbContext context)
         {
             _context = context;
         }

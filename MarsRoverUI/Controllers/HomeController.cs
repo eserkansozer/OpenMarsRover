@@ -59,9 +59,4 @@ namespace MarsRoverBusinessLogic.Controllers
             return View();
         }
     }
-
-    class GameResult
-    {
-        public string FinalLocation{get;set;}
-    }
 }

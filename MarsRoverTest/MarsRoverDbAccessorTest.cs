@@ -24,7 +24,7 @@ namespace MarsRoverTest
             positionDbSet.Add(pos1);
             positionDbSet.Add(pos2);
 
-            var accessor = new MarsRoverDbAccessor(new CannedMarsRoverDbContext(roverDbSet, positionDbSet));
+            var accessor = new EFMarsRoverDbAccessor(new CannedMarsRoverDbContext(roverDbSet, positionDbSet));
 
             var output = accessor.QueryForTheLastTravelledTrack();
 
@@ -47,7 +47,7 @@ namespace MarsRoverTest
             positionDbSet.Add(pos4); 
             positionDbSet.Add(pos5);
 
-            var accessor = new MarsRoverDbAccessor(new CannedMarsRoverDbContext(roverDbSet, positionDbSet));
+            var accessor = new EFMarsRoverDbAccessor(new CannedMarsRoverDbContext(roverDbSet, positionDbSet));
 
             var output = accessor.QueryForTheLongestDistanceRover();
             

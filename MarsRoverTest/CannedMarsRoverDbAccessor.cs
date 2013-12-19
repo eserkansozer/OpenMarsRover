@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MarsRoverDAL.ORM;
+using MarsRoverDAL;
 using MarsRoverDAL.DAObjects;
 using System.Data.Entity;
 
 namespace MarsRoverTest
 {
-    public class CannedMarsRoverDbAccessor : /*DbContext, */ IMarsRoverDbAccessor
+    public class CannedMarsRoverDbAccessor : IMarsRoverDbAccessor
     {
         string _lastTravelledTrack, _longestDistanceRover;
 

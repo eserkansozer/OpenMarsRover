@@ -4,13 +4,12 @@ using System.Linq;
 using System.Web;
 using MarsRoverDAL.DAObjects;
 
-namespace MarsRoverDAL.ORM
+namespace MarsRoverDAL
 {
     public interface IMarsRoverDbAccessor
     {
         string QueryForTheLastTravelledTrack();
         string QueryForTheLongestDistanceRover();
-        //void PersistRover(Rover rover);
         void PersistGame(Game game);
     }
 }
