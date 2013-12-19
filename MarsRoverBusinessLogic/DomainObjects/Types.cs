@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-namespace MarsRoverDAL.DAObjects
+﻿namespace MarsRoverBusinessLogic.DomainObjects
 {
     public enum RoverCommand
     {

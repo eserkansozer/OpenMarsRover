@@ -33,6 +33,7 @@ namespace MarsRoverTest
         }
 
         [TestMethod]
+        [Ignore]
         public void ProcessActionShouldReturnResultFromRoverManager()
         {
             var controller = new HomeController(new CannedRoverManager("xyz"));
