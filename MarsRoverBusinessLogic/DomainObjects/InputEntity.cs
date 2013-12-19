@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MarsRoverDAL.DAObjects;
 
-namespace MarsRoverDAL.DAObjects
+namespace MarsRoverBusinessLogic.DomainObjects
 {
     public class InputEntity : IEquatable<InputEntity>
     {

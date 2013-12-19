@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainObjects\InputEntity.cs" />
+    <Compile Include="DomainObjects\RoverCommandsInputEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IInputParser.cs" />
     <Compile Include="Services\InputParser.cs" />

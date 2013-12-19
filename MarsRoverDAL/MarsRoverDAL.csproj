@@ -48,10 +48,8 @@
   <ItemGroup>
     <Compile Include="DAObjects\Coordinates.cs" />
     <Compile Include="DAObjects\Game.cs" />
-    <Compile Include="DAObjects\InputEntity.cs" />
     <Compile Include="DAObjects\Position.cs" />
     <Compile Include="DAObjects\Rover.cs" />
-    <Compile Include="DAObjects\RoverCommandsInputEntity.cs" />
     <Compile Include="DAObjects\Types.cs" />
     <Compile Include="Migrations\201311291608445_InitialCreate.cs" />
     <Compile Include="Migrations\201311291608445_InitialCreate.Designer.cs">

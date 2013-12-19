@@ -5,6 +5,7 @@ using System.Web;
 using System.Text;
 using MarsRoverDAL.DAObjects;
 using MarsRoverDAL.ORM;
+using MarsRoverBusinessLogic.DomainObjects;
 
 namespace MarsRoverBusinessLogic.Services
 {

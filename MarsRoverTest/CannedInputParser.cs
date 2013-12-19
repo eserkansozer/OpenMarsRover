@@ -6,6 +6,7 @@ using MarsRoverBusinessLogic.Services;
 using MarsRoverDAL.DAObjects;
 using MarsRoverDAL.ORM;
 using System.Data.Entity;
+using MarsRoverBusinessLogic.DomainObjects;
 
 namespace MarsRoverTest
 {

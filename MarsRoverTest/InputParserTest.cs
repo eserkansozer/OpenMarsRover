@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MarsRoverBusinessLogic.Services;
 using MarsRoverDAL.DAObjects;
+using MarsRoverBusinessLogic.DomainObjects;
 
 namespace MarsRoverTest
 {
